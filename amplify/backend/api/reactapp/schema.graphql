@@ -3,3 +3,9 @@ type Note @model {
   name: String!
   description: String
 }
+type Time @model {
+  id: ID!
+  type: Int!
+  start: String!
+  end: String
+}

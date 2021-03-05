@@ -4,7 +4,7 @@ import { API } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listNotes } from './graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
-import Main from './Main';
+
 const initialFormState = { name: '', description: '' }
 
 function App() {
@@ -18,7 +18,6 @@ function App() {
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listNotes });
     setNotes(apiData.data.listNotes.items);
-    console.log(apiData.data.listNotes.items);
   }
 
   async function createNote() {
@@ -59,7 +58,6 @@ function App() {
           ))
         }
       </div>
-      <Main />
       <AmplifySignOut />
     </div>
   );
