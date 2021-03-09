@@ -1,8 +1,3 @@
-type Note @model {
-  id: ID!
-  name: String!
-  description: String
-}
 type Time @model {
   id: ID!
   type: Int!

@@ -3,14 +3,16 @@ import './App.css';
 import { API} from 'aws-amplify';
 import { listTimes } from './graphql/queries';
 import { createTime as createTimeMutation, deleteTime as deleteTimeMutation,updateTime as updateTimeMutation} from './graphql/mutations';
-
-const initialDataState = { type:0 ,start:"",end:null}
+import {Summarize} from './Summarize';
 
 function Main() {
+  const initialDataState = { type:0 ,start:"",end:null}
+  const initialSummarizeState = {day:{hour:0,minutes:0},week:{hour:0,minutes:0}}
   const [times, setTimes] = useState([]);
   const [logs, setLogs] = useState([]);
   const [Datas, setData] = useState(initialDataState);
   const [ct,setContinue] = useState({state:false});
+  const [summarize,setSummarize] = useState(initialSummarizeState);
 
 
   useEffect(() => {
@@ -28,7 +30,9 @@ function Main() {
     }
     else{
       setContinue({state:false});
-    }
+    };
+    setSummarize(Summarize(apiData.data.listTimes.items));
+    
   }
 
   async function createTime() {
@@ -58,6 +62,7 @@ function Main() {
     buttonState(newTimesArray);
   }
 
+
 let exportTime = (numStr) => {
     let etime = parseInt(numStr,10);
     let date = new Date(etime);
@@ -79,6 +84,9 @@ const buttonState = (timedatas) =>{
   return (
     <div className="App">
       <h1>Timer</h1>
+  <h2>today | {summarize.day.hour}:{summarize.day.minutes}</h2>
+  <h2>Week | {summarize.week.hour}:{summarize.week.minutes}</h2>
+      <h2></h2>
       {((!ct.state) && <button onClick={createTime}>Start</button>)}
       {(ct.state && <button onClick={updateTime}>Stop</button>)}
       <div style={{marginBottom: 30}}>
