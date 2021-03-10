@@ -1,0 +1,13 @@
+.Top{
+    width:100%;
+    background-color: orange;
+    color: whitesmoke;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 40px;
+}
+.TopTitle{
+    font-size: 25px;
+}

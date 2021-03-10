@@ -38,9 +38,9 @@
             }
 
         )
-        console.log(Math.floor(day/3800000));
-        const dayTimes={hour:(Math.floor(day/3800000)),minutes:(Math.floor((day%3600000)/60000))};
-        const weekTimes={hour:(Math.floor(week/3800000)),minutes:(Math.floor((week%3600000)/60000))};
+        console.log(Math.floor(day/3600000));
+        const dayTimes={hour:(Math.floor(day/3600000)),minutes:(Math.floor((day%3600000)/60000))};
+        const weekTimes={hour:(Math.floor(week/3600000)),minutes:(Math.floor((week%3600000)/60000))};
         return{day:dayTimes,week:weekTimes};
     } 
 
